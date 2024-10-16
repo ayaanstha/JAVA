@@ -31,7 +31,7 @@ public class QuadraticEquationSolver {
             double imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
             System.out.println("Root 1: " + realPart + " + " + imaginaryPart + "i");
             System.out.println("Root 2: " + realPart + " - " + imaginaryPart + "i");
-		System.out.print("Aman Vats 1BM23CS026");
+		System.out.print("Ayaan Shrestha 1BM23CS056");
         }
         
         scanner.close();
