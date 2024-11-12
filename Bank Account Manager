@@ -1,0 +1,145 @@
+import java.util.Scanner;
+
+class Account {
+    String customerName;
+    int accountNumber;
+    String accountType;
+    double balance;
+
+    Account(String customerName, int accountNumber, String accountType, double initialBalance) {
+        this.customerName = customerName;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.balance = initialBalance;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit successful. New balance: $" + balance);
+    }
+
+    void displayBalance() {
+        System.out.println("Current balance: $" + balance);
+    }
+}
+
+class SavingsAccount extends Account {
+    private static final double INTEREST_RATE = 0.04;
+
+    SavingsAccount(String customerName, int accountNumber, double initialBalance) {
+        super(customerName, accountNumber, "Savings", initialBalance);
+    }
+
+    void computeInterest() {
+        double interest = balance * INTEREST_RATE;
+        balance += interest;
+        System.out.println("Interest added. New balance: $" + balance);
+    }
+
+    void withdraw(double amount) {
+        if (amount > balance) {
+            System.out.println("Insufficient funds.");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawal successful. New balance: $" + balance);
+        }
+    }
+}
+
+class CurrentAccount extends Account {
+    private static final double MIN_BALANCE = 500.00;
+    private static final double SERVICE_CHARGE = 25.00;
+
+    CurrentAccount(String customerName, int accountNumber, double initialBalance) {
+        super(customerName, accountNumber, "Current", initialBalance);
+    }
+
+    void checkMinimumBalance() {
+        if (balance < MIN_BALANCE) {
+            balance -= SERVICE_CHARGE;
+            System.out.println("Below minimum balance. Service charge of $" + SERVICE_CHARGE + " applied. New balance: $" + balance);
+        } else {
+            System.out.println("Balance is above the minimum required.");
+        }
+    }
+
+    void withdraw(double amount) {
+        if (amount > balance) {
+            System.out.println("Insufficient funds.");
+        } else {
+            balance -= amount;
+            checkMinimumBalance();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+       
+        SavingsAccount savingsAccount = new SavingsAccount("Ayaan", 1, 1000.00);
+        CurrentAccount currentAccount = new CurrentAccount("AyaanStha", 2, 800.00);
+
+        while (true) {
+            System.out.println("\n---MENU---");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Compute interest for SavingsAccount");
+            System.out.println("4. Display account details");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+
+            Account selectedAccount = null;
+            System.out.print("Enter the type of account (saving/current): ");
+            String accountType = sc.next();
+
+            if (accountType.equalsIgnoreCase("saving")) {
+                selectedAccount = savingsAccount;
+            } else if (accountType.equalsIgnoreCase("current")) {
+                selectedAccount = currentAccount;
+            } else {
+                System.out.println("Invalid account type. Try again.");
+                continue;
+            }
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the deposit amount: ");
+                    double depositAmount = sc.nextDouble();
+                    selectedAccount.deposit(depositAmount);
+                    break;
+                case 2:
+                    System.out.print("Enter the withdrawal amount: ");
+                    double withdrawalAmount = sc.nextDouble();
+                    if (selectedAccount instanceof SavingsAccount) {
+                        ((SavingsAccount) selectedAccount).withdraw(withdrawalAmount);
+                    } else if (selectedAccount instanceof CurrentAccount) {
+                        ((CurrentAccount) selectedAccount).withdraw(withdrawalAmount);
+                    }
+                    break;
+                case 3:
+                    if (selectedAccount instanceof SavingsAccount) {
+                        ((SavingsAccount) selectedAccount).computeInterest();
+                    } else {
+                        System.out.println("Interest computation is only for savings accounts.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Account name: " + selectedAccount.customerName);
+                    System.out.println("Account number: " + selectedAccount.accountNumber);
+                    System.out.println("Type of account: " + selectedAccount.accountType);
+                    selectedAccount.displayBalance();
+                    break;
+                case 5:
+                    System.out.println("Exiting program...");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("Ayaan Shrestha 1BM23CS056");
+            }
+        }
+    }
+}
