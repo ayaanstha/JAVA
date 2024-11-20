@@ -25,7 +25,7 @@ public class Main {
             System.out.print("Enter Semester: ");
             int sem = scanner.nextInt();
 
-            // Input internal marks for 5 courses
+            
             int[] internalMarks = new int[5];
             System.out.println("Enter Internal Marks for 5 Courses:");
             for (int j = 0; j < 5; j++) {
@@ -40,7 +40,7 @@ public class Main {
                 System.out.print("Course " + (j + 1) + ": ");
                 externalMarks[j] = scanner.nextInt();
             }
-            scanner.nextLine();  // Consume the newline after integer input
+            scanner.nextLine();  
 
            
             Internals internalStudent = new Internals(usn, name, sem, internalMarks);
