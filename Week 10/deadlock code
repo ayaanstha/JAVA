@@ -53,12 +53,12 @@ class Deadlock implements Runnable {
         Thread t = new Thread(this, "RacingThread");
         t.start();
 
-        a.foo(b); // get lock on a in this thread
+        a.foo(b); 
         System.out.println("Back in main thread");
     }
 
     public void run() {
-        b.bar(a); // get lock on b in other thread
+        b.bar(a); 
         System.out.println("Back in other thread");
     }
 
