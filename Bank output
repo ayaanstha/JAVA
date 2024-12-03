@@ -1,3 +1,4 @@
+Ayaan Shrestha 1BM23CS056
 ---MENU---
 1. Deposit
 2. Withdraw
@@ -8,6 +9,7 @@ Enter your choice: 1
 Enter the type of account (saving/current): 90000
 Invalid account type. Try again.
 
+Ayaan Shrestha 1BM23CS056
 ---MENU---
 1. Deposit
 2. Withdraw
@@ -19,6 +21,7 @@ Enter the type of account (saving/current): saving
 Enter the withdrawal amount: 3000
 Insufficient funds.
 
+Ayaan Shrestha 1BM23CS056
 ---MENU---
 1. Deposit
 2. Withdraw
@@ -29,6 +32,7 @@ Enter your choice: 3
 Enter the type of account (saving/current): saving
 Interest added. New balance: $1040.0
 
+Ayaan Shrestha 1BM23CS056
 ---MENU---
 1. Deposit
 2. Withdraw
