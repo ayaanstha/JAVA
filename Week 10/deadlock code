@@ -9,7 +9,7 @@ class A {
             System.out.println("A Interrupted");
         }
 
-        // Now acquire the lock on B after the lock on A
+        
         synchronized (b) {
             System.out.println(name + " trying to call B.last()");
             b.last();
@@ -32,7 +32,7 @@ class B {
             System.out.println("B Interrupted");
         }
 
-        // Now acquire the lock on A after the lock on B
+        
         synchronized (a) {
             System.out.println(name + " trying to call A.last()");
             a.last();
